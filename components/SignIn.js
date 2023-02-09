@@ -6,7 +6,7 @@ import { Modal } from "antd";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../reducers/activeUser";
 
 // Component:

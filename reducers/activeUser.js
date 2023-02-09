@@ -1,10 +1,10 @@
-// Imports:
+//# Imports:
 import { createSlice } from "@reduxjs/toolkit";
 
-// Set up the initial state:
+//# Set up the initial state:
 const initialState = { value: { token: null, username: null } };
 
-// Configure the reducer module:
+//# Configure the reducer module:
 export const acitveUserSlice = createSlice({
   name: "activeUser",
   initialState,

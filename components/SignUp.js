@@ -1,6 +1,6 @@
 import styles from "../styles/Signup.module.css";
 
-// Imports:
+//# Imports:
 import { Modal } from "antd";
 
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/activeUser";
 
-// Component:
+//# Component:
 function Signup() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 

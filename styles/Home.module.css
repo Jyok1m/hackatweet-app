@@ -11,7 +11,7 @@
   font-size: 24px;
 }
 
-/* Left pane */
+/*# Left pane */
 
 .left {
   display: flex;
@@ -30,6 +30,10 @@
   transform: rotate(180deg);
 }
 
+.miniLogo:hover {
+  cursor: pointer;
+}
+
 .profilePic {
   height: 50px;
   width: 50px;
@@ -44,13 +48,15 @@
   margin-left: 10px;
 }
 
-.userName {
+.username {
   font-size: 14px;
+  margin-bottom: 0;
 }
 
-.identifier {
+.userText > .identifier {
   font-size: 14px;
   color: grey;
+  margin-top: 5px;
 }
 
 .logoutBtn {
@@ -66,7 +72,7 @@
   border: white 1px solid;
 }
 
-/* Middle Pane */
+/*# Middle Pane */
 
 .middle {
   display: flex;
@@ -152,7 +158,7 @@
   width: 7%;
 }
 
-/* Right Pane */
+/*# Right Pane */
 
 .right {
   display: flex;
