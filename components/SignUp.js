@@ -93,7 +93,7 @@ function Signup() {
             onInput={(input) => setPassword(input.target.value)}
           />
           <button className={styles.submitBtn} onClick={() => signup()}>
-            Sign Up
+            Sign up
           </button>
         </div>
       </Modal>
