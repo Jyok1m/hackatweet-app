@@ -1,26 +1,23 @@
 import styles from "../styles/Signin.module.css";
 
-// Imports Antd:
+// Imports:
 import { Modal } from "antd";
 
-// Imports React:
 import { useState } from "react";
-
-// Imports Redirection from Next JS:
 import { useRouter } from "next/router";
 
-// Imports Reducers:
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/activeUser";
 
+// Component:
 function Signin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Set fields upon input:
+  //! Set fields upon input:
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  // Modal button clicks:
+  //! Modal button clicks:
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -32,7 +29,7 @@ function Signin() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // Setup the signup functional fetch:
+  //! Setup the signup functional fetch:
   const signup = async () => {
     const userData = { username, password };
     const response = await fetch(
@@ -52,7 +49,7 @@ function Signin() {
     }
   };
 
-  // Return of the function:
+  //! Return of the function:
   return (
     <div>
       <button className={styles.signin} type="primary" onClick={showModal}>

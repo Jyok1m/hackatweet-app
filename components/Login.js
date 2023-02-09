@@ -1,10 +1,10 @@
-// CSS:
 import styles from "../styles/Login.module.css";
 
-// Modules:
+// Imports:
 import Signin from "./SignIn";
 import Signup from "./SignUp";
 
+// Component:
 function Login() {
   return (
     <div>

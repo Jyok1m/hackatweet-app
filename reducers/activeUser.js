@@ -1,4 +1,4 @@
-// Import the slice module:
+// Imports:
 import { createSlice } from "@reduxjs/toolkit";
 
 // Set up the initial state:
