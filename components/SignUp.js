@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/activeUser";
 
-function Signin() {
+function Signup() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Set fields upon input:
@@ -30,7 +30,6 @@ function Signin() {
     setIsModalOpen(false);
   };
 
-  // Define the dispatch and routing models:
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -102,4 +101,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default Signup;
