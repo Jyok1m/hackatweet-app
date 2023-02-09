@@ -80,6 +80,11 @@
   width: 60vw;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
   overflow: auto;
 }
 
@@ -144,7 +149,6 @@
 
 .userData {
   display: flex;
-  width: 32%;
   align-items: center;
   justify-content: space-evenly;
   padding-right: 0px;
