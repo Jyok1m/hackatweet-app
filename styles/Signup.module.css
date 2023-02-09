@@ -1,0 +1,58 @@
+.signup {
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 200px;
+  background-color: #1c9cef;
+  color: white;
+  border: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.miniLogo {
+  height: 50px;
+  width: 50px;
+  transform: rotate(180deg);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #171f2c;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputBox {
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 200px;
+  border: #171f2c 1px solid;
+}
+
+.submitBtn {
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 200px;
+  border: #171f2c 1px solid;
+}

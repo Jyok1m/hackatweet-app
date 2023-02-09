@@ -1,0 +1,12 @@
+.signin {
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+  width: 200px;
+  background-color: transparent;
+  color: #1c9cef;
+  border: 1px solid white;
+}
