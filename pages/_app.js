@@ -5,7 +5,6 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import activeUser from "../reducers/activeUser";
-//TODO import user from "../reducers/user";
 
 // Import store persistance modules:
 import { persistStore, persistReducer } from "redux-persist";
