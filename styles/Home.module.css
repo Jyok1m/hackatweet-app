@@ -162,6 +162,10 @@
   width: 7%;
 }
 
+.likeIcon:hover {
+  cursor: pointer;
+}
+
 /*# Right Pane */
 
 .right {

@@ -10,49 +10,52 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 //# Component:
-function LastTweets() {
-  const [tweetList, setTweetList] = useState([]);
-  const tweetStatus = useSelector((state) => state.tweets.value);
+function LastTweets(props) {
+  const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
 
-  //! Map the data:
-  useEffect(() => {
-    fetch("https://hackatweet-back.vercel.app/tweets/all")
-      .then((response) => response.json())
-      .then((data) => {
-        setTweetList(data.tweets);
-      });
-  }, [tweetStatus]);
+  //! Handle like:
+  const handleLike = (button) => {
+    if (isLiked) {
+      button.target.style = "color: white";
+      setLikeCount((likeCount -= 1));
+      setIsLiked(false);
+    } else {
+      button.target.style = "color: red";
+      setLikeCount((likeCount += 1));
+      setIsLiked(true);
+    }
+  };
 
-  tweetList.sort((a, b) => b.timestamp - a.timestamp);
-
-  const allTweets = tweetList.map((data, i) => {
-    return (
-      <div className={styles.tweetContainer} key={i}>
+  return (
+    <>
+      <div className={styles.tweetContainer} key={props.key}>
         <div className={styles.data}>
           <img className={styles.profilePic} src="/user-logo.png" alt="" />
           <div className={styles.userData}>
             <h4>
-              {data.author.firstname}{" "}
+              {props.firstname}{" "}
               <span style={{ color: "grey" }}>
-                @{data.author.username} - {data.timestamp}
+                @{props.username} - {props.timestamp}
               </span>
             </h4>
           </div>
         </div>
         <div className={styles.tweetText}>
-          <p className={styles.tweet}>
-            {data.tweet} <span className={styles.hashtag}>#cenation</span>
-          </p>
+          <p className={styles.tweet}>{props.tweetText}</p>
         </div>
         <div className={styles.icons}>
-          <FontAwesomeIcon icon={faHeart} className={styles.likeIcon} />
-          <p className={styles.likeCounter}>0</p>
+          <FontAwesomeIcon
+            icon={faHeart}
+            className={styles.likeIcon}
+            onClick={(button) => handleLike(button)}
+          />
+          <p className={styles.likeCounter}>{likeCount}</p>
           <FontAwesomeIcon icon={faTrash} className={styles.likeIcon} />
         </div>
       </div>
-    );
-  });
-  return <>{allTweets}</>;
+    </>
+  );
 }
 
 export default LastTweets;
