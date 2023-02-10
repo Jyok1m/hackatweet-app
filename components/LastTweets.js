@@ -5,25 +5,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
+import { useState, useEffect } from "react";
+
+import { useSelector } from "react-redux";
+
 //# Component:
 function LastTweets() {
-  return (
-    <>
-      <div className={styles.tweetContainer}>
+  const [tweetList, setTweetList] = useState([]);
+  const tweetStatus = useSelector((state) => state.tweets.value);
+
+  //! Map the data:
+  useEffect(() => {
+    fetch("https://hackatweet-back.vercel.app/tweets/all")
+      .then((response) => response.json())
+      .then((data) => {
+        setTweetList(data.tweets);
+      });
+  }, [tweetStatus]);
+
+  tweetList.sort((a, b) => b.timestamp - a.timestamp);
+
+  const allTweets = tweetList.map((data, i) => {
+    return (
+      <div className={styles.tweetContainer} key={i}>
         <div className={styles.data}>
           <img className={styles.profilePic} src="/user-logo.png" alt="" />
           <div className={styles.userData}>
             <h4>
-              John{" "}
+              {data.author.firstname}{" "}
               <span style={{ color: "grey" }}>
-                @JohnCena - a few seconds ago
+                @{data.author.username} - {data.timestamp}
               </span>
             </h4>
           </div>
         </div>
         <div className={styles.tweetText}>
           <p className={styles.tweet}>
-            You can't see me ! <span className={styles.hashtag}>#cenation</span>
+            {data.tweet} <span className={styles.hashtag}>#cenation</span>
           </p>
         </div>
         <div className={styles.icons}>
@@ -32,8 +50,9 @@ function LastTweets() {
           <FontAwesomeIcon icon={faTrash} className={styles.likeIcon} />
         </div>
       </div>
-    </>
-  );
+    );
+  });
+  return <>{allTweets}</>;
 }
 
 export default LastTweets;

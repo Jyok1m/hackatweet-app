@@ -1,7 +1,9 @@
 import styles from "../styles/Home.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { changeState } from "../reducers/tweets";
 
 function Tweet() {
   const [tweet, setTweet] = useState("");
@@ -9,6 +11,14 @@ function Tweet() {
   const [timestamp, setTimestamp] = useState(0);
 
   const activeUser = useSelector((state) => state.activeUser.value);
+  const tweetStatus = useSelector((state) => state.tweets.value);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setToken(activeUser.token);
+    setTimestamp(new Date().getTime());
+  }, [tweetStatus]);
 
   //# Handle submit button:
   const handleSubmitBtn = () => {
@@ -16,22 +26,19 @@ function Tweet() {
       window.alert("Please enter a tweet first !");
       return;
     } else {
-      setToken(activeUser.token);
-      setTimestamp(new Date().getTime());
-
       const userData = { token, tweet, timestamp };
       fetch("https://hackatweet-back.vercel.app/tweets/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
-      })
-        .then((response) => response.json())
-        .then(() => window.alert("Tweet saved !"));
-      setTweet("");
+      }).then((response) => response.json());
+      dispatch(changeState());
+      window.alert("Tweet saved !");
     }
   };
 
   //todo: Faire la condition de limite de tweet !
+  //todo: Empty le input field on submit
 
   return (
     <>
