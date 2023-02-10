@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/activeUser";
 
+import toast, { Toaster } from "react-hot-toast";
+
 //# Component:
 function Signup() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,7 +48,7 @@ function Signup() {
       dispatch(login({ username, token: data.token }));
       router.push("/home"); //? Redirects to the home page
     } else {
-      window.alert(data.error);
+      toast(data.error);
     }
   };
 
@@ -92,6 +94,7 @@ function Signup() {
           <button className={styles.submitBtn} onClick={() => signup()}>
             Sign up
           </button>
+          <Toaster></Toaster>
         </div>
       </Modal>
     </div>

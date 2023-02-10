@@ -10,6 +10,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeState } from "../reducers/tweets";
 
+import toast, { Toaster } from "react-hot-toast";
+
 //# Component:
 function LastTweets(props) {
   const [isLiked, setIsLiked] = useState(false);
@@ -35,7 +37,8 @@ function LastTweets(props) {
       method: "DELETE",
     })
       .then((response) => response.json())
-      .then(() => dispatch(changeState()));
+      .then(() => dispatch(changeState()))
+      .then(() => toast("The tweet has been successfully deleted"));
   };
 
   return (

@@ -25,7 +25,7 @@ function Tweet() {
   //# Handle submit button:
   const handleSubmitBtn = () => {
     if (tweet === "") {
-      window.alert("Please enter a tweet first !");
+      toast("Please enter a tweet first !");
       return;
     } else {
       const userData = { token, tweet, timestamp };
@@ -35,9 +35,9 @@ function Tweet() {
         body: JSON.stringify(userData),
       })
         .then((response) => response.json())
-        .then(() => dispatch(changeState()));
-      toast("Tweet saved !");
-      setTweet("");
+        .then(() => dispatch(changeState()))
+        .then(() => toast("Tweet saved !"))
+        .then(() => setTweet(""));
     }
   };
 
