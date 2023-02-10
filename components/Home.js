@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../reducers/activeUser";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
+import Trends from "./Trends";
 
 const moment = require("moment");
 
@@ -68,7 +69,6 @@ function Home() {
     let newStr = [];
     const startsWithHashtag = /^#/;
     for (let i = 0; i < words.length; i++) {
-      console.log("words[i]", words[i]);
       if (startsWithHashtag.test(words[i])) {
         newStr.push(
           <span style={{ color: "#1c9cef", cursor: "pointer" }}>
@@ -79,7 +79,6 @@ function Home() {
         newStr.push(<span>{words[i]} </span>);
       }
     }
-    console.log("newStr.join('')", newStr.join(""));
     return newStr;
   }
 
@@ -128,16 +127,7 @@ function Home() {
         </div>
         <div className={styles.right}>
           <h1 className={styles.title}>Trends</h1>
-          <div className={styles.trendBox}>
-            <div className={styles.trend}>
-              <h2 className={styles.hashtag}>#hackatweet</h2>
-              <p className={styles.tweetCount}>2 Tweets</p>
-            </div>
-            <div className={styles.trend}>
-              <h2 className={styles.hashtag}>#hackatweet</h2>
-              <p className={styles.tweetCount}>2 Tweets</p>
-            </div>
-          </div>
+          <Trends/>
         </div>
       </div>
     </>
