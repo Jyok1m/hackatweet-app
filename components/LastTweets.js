@@ -7,7 +7,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeState } from "../reducers/tweets";
 
 import toast, { Toaster } from "react-hot-toast";
@@ -17,6 +17,8 @@ function LastTweets(props) {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const dispatch = useDispatch();
+
+  const activeUser = useSelector((state) => state.activeUser.value);
 
   //! Handle like:
   const handleLike = (button) => {
@@ -40,6 +42,18 @@ function LastTweets(props) {
       .then(() => dispatch(changeState()))
       .then(() => toast("The tweet has been successfully deleted"));
   };
+
+  //! Hide trash:
+  let trash = null;
+  if (activeUser.token === props.token) {
+    trash = (
+      <FontAwesomeIcon
+        icon={faTrash}
+        className={styles.likeIcon}
+        onClick={() => handleDelete()}
+      />
+    );
+  }
 
   return (
     <>
@@ -65,11 +79,7 @@ function LastTweets(props) {
             onClick={(button) => handleLike(button)}
           />
           <p className={styles.likeCounter}>{likeCount}</p>
-          <FontAwesomeIcon
-            icon={faTrash}
-            className={styles.likeIcon}
-            onClick={() => handleDelete()}
-          />
+          {trash}
         </div>
       </div>
     </>

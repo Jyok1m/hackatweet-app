@@ -90,6 +90,7 @@ function Home() {
         tweetId={data._id}
         firstname={data.author.firstname}
         username={data.author.username}
+        token={data.author.token}
         timestamp={moment(data.timestamp).startOf("second").fromNow()}
         tweetText={displayText(data.tweet)}
       />
