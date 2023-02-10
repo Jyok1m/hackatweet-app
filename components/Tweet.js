@@ -41,9 +41,6 @@ function Tweet() {
     }
   };
 
-  //todo: Faire la condition de limite de tweet !
-  //todo: Empty le input field on submit
-
   return (
     <>
       <div className={styles.inputBox}>
@@ -51,6 +48,8 @@ function Tweet() {
           className={styles.inputField}
           type="text"
           placeholder="What's up ?"
+          maxLength="280"
+          value={tweet}
           onChange={(input) => setTweet(input.target.value)}
         />
         <div className={styles.tweetBtn}>

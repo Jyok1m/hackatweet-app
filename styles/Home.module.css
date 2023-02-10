@@ -100,7 +100,7 @@
   height: 40px;
   line-height: 20px;
   background-color: transparent;
-  border-right: none;
+  border: none;
   color: grey;
   border-bottom: 0.5px solid grey;
 }
