@@ -10,39 +10,28 @@ function Tweet() {
 
   const activeUser = useSelector((state) => state.activeUser.value);
 
-  //# Function to handle the length condition:
-  const handleLength = (input) => {
-    while (input.target.value.length <= 180) {
-      setTweet(input.target.value);
-    }
-    if (input.target.value.length === 180)
-      window.alert("You have reached the maximum length !");
-  };
-
-  //# Function to post the tweet data via the route:
-  const sendTweet = (token, tweet, timestamp) => {
-    const userData = { token, tweet, timestamp };
-    fetch("https://hackatweet-back.vercel.app/tweets/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userData),
-    })
-      .then((response) => response.json())
-      .then(() => window.alert("Tweet saved !"))
-      .then(() => setTweet(""));
-  };
-
   //# Handle submit button:
   const handleSubmitBtn = () => {
-    if (tweet !== "") {
+    if (tweet === "") {
       window.alert("Please enter a tweet first !");
       return;
     } else {
       setToken(activeUser.token);
       setTimestamp(new Date().getTime());
-      sendTweet(token, tweet, timestamp);
+
+      const userData = { token, tweet, timestamp };
+      fetch("https://hackatweet-back.vercel.app/tweets/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      })
+        .then((response) => response.json())
+        .then(() => window.alert("Tweet saved !"));
+      setTweet("");
     }
   };
+
+  //todo: Faire la condition de limite de tweet !
 
   return (
     <>
@@ -51,7 +40,7 @@ function Tweet() {
           className={styles.inputField}
           type="text"
           placeholder="What's up ?"
-          onChange={(input) => handleLength(input)}
+          onChange={(input) => setTweet(input.target.value)}
         />
         <div className={styles.tweetBtn}>
           <p className={styles.characterCount}>{tweet.length}/280</p>
