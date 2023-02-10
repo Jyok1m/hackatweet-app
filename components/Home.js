@@ -87,6 +87,7 @@ function Home() {
     return (
       <LastTweets
         key={i}
+        tweetId={data._id}
         firstname={data.author.firstname}
         username={data.author.username}
         timestamp={moment(data.timestamp).startOf("second").fromNow()}

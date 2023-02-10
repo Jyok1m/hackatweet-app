@@ -5,14 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { changeState } from "../reducers/tweets";
 
 //# Component:
 function LastTweets(props) {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const dispatch = useDispatch();
 
   //! Handle like:
   const handleLike = (button) => {
@@ -25,6 +27,15 @@ function LastTweets(props) {
       setLikeCount((likeCount += 1));
       setIsLiked(true);
     }
+  };
+
+  //! Handle delete:
+  const handleDelete = () => {
+    fetch(`https://hackatweet-back.vercel.app/tweets/delete/${props.tweetId}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then(() => dispatch(changeState()));
   };
 
   return (
@@ -51,7 +62,11 @@ function LastTweets(props) {
             onClick={(button) => handleLike(button)}
           />
           <p className={styles.likeCounter}>{likeCount}</p>
-          <FontAwesomeIcon icon={faTrash} className={styles.likeIcon} />
+          <FontAwesomeIcon
+            icon={faTrash}
+            className={styles.likeIcon}
+            onClick={() => handleDelete()}
+          />
         </div>
       </div>
     </>

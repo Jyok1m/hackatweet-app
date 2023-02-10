@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 
 import { changeState } from "../reducers/tweets";
 
+import toast, { Toaster } from "react-hot-toast";
+
 function Tweet() {
   const [tweet, setTweet] = useState("");
   const [token, setToken] = useState("");
@@ -31,9 +33,11 @@ function Tweet() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
-      }).then((response) => response.json());
-      dispatch(changeState());
-      window.alert("Tweet saved !");
+      })
+        .then((response) => response.json())
+        .then(() => dispatch(changeState()));
+      toast("Tweet saved !");
+      setTweet("");
     }
   };
 
@@ -57,6 +61,7 @@ function Tweet() {
           >
             Tweet
           </button>
+          <Toaster></Toaster>
         </div>
       </div>
     </>
